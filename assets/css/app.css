@@ -270,6 +270,8 @@ table.table-fixed-header > tbody {
 .results table { margin-bottom: 10px; }
 
 
+.saved-pokemons { margin-top: 50px; }
+
 .saved-pokemons th,
 .saved-pokemons td { width: 10%; }
 

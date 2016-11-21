@@ -196,57 +196,65 @@
         </table>
 				<button class="btn btn-success btn-lg pull-right" ng-click="vm.saveResult()">Save Pokémon</button>
     </div>
-		<div class="saved-pokemons" ng-show="vm.gameStorage.pokemons.length > 0">
-			<h3>Saved Pokémons</h3>
-			<table class="table table-striped table-condensed table-responsive">
-				<thead>
-					<tr>
-						<th>Pokémon</th>
-						<th>CP</th>
-						<th>HP</th>
-						<th>Dust Price</th>
-						<th>Powered Up?</th>
-						<th class="th--stats">
-							<div class="stats">
-								<div class="stats--lvl">Level</div>
-								<div class="stats--ivs">
-									<div >Individual values</div>
-									<div class="stats-wrap">
-										<span class="stats--atk">ATK</span>
-										<span class="stats--def">DEF</span>
-										<span class="stats--sta">STA</span>
+		<div class="row collapsible saved-pokemons" ng-init="savedPokemons = (vm.gameStorage.pokemons.length == 0)">
+			<label>
+				<a ng-click="savedPokemons = !savedPokemons">
+					Saved Pok&eacute;mons
+					<span class="glyphicon glyphicon-menu-down" aria-hidden="true" ng-show="savedPokemons"></span>
+					<span class="glyphicon glyphicon-menu-up" aria-hidden="true" ng-show="!savedPokemons"></span>
+				</a>
+			</label>
+			<div ng-show="vm.gameStorage.pokemons.length > 0" uib-collapse="savedPokemons">
+				<table class="table table-striped table-condensed table-responsive">
+					<thead>
+						<tr>
+							<th>Pokémon</th>
+							<th>CP</th>
+							<th>HP</th>
+							<th>Dust Price</th>
+							<th>Powered Up?</th>
+							<th class="th--stats">
+								<div class="stats">
+									<div class="stats--lvl">Level</div>
+									<div class="stats--ivs">
+										<div >Individual values</div>
+										<div class="stats-wrap">
+											<span class="stats--atk">ATK</span>
+											<span class="stats--def">DEF</span>
+											<span class="stats--sta">STA</span>
+										</div>
 									</div>
 								</div>
-							</div>
-						</th>
-						<th>% Perfect</th>
-						<th class="th--controls"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="sp in vm.gameStorage.pokemons track by $index">
-						<td>{{vm.gameData.pokemonList[sp.pokemon].name}}</td>
-						<td>{{sp.cp}}</td>
-						<td>{{sp.hp}}</td>
-						<td>{{vm.gameData.dustValues[sp.stardust]}}</td>
-						<td>{{sp.results.isPoweredUp}}</td>
-						<td ng-if="sp.results.stats.length == 1">
-							<div class="stats-ivs">
-								<div>{{sp.results.stats[0].level}}</div>
-								<div>{{sp.results.stats[0].ATK}}</div>
-								<div>{{sp.results.stats[0].DEF}}</div>
-								<div>{{sp.results.stats[0].HP}}</div>
-							</div>
-						</td>
-						<td ng-if="sp.results.stats.length > 1">{{sp.results.stats.length}} combinations</td>
-						<td style="{{vm.IVColorIndex(sp.results.maxIV)}}" ng-if="sp.results.stats.length == 1">{{(sp.results.maxIV/0.45).toFixed(1)}}%</td>
-						<td style="{{vm.IVColorIndex(sp.results.avgIV)}}" ng-if="sp.results.stats.length > 1">{{(sp.results.minIV/0.45).toFixed(0)}}% - {{(sp.results.maxIV/0.45).toFixed(0)}}%</td>
-						<td class="td--controls">
-							<a ng-click="vm.removePokemon(sp.key)" title="Remove"><img src="assets/img/remove.png" alt="Remove" ></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<button class="btn btn-info btn-md pull-right" ng-click="vm.exportData()">Export Data</button>
+							</th>
+							<th>% Perfect</th>
+							<th class="th--controls"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="sp in vm.gameStorage.pokemons track by $index">
+							<td>{{vm.gameData.pokemonList[sp.pokemon].name}}</td>
+							<td>{{sp.cp}}</td>
+							<td>{{sp.hp}}</td>
+							<td>{{vm.gameData.dustValues[sp.stardust]}}</td>
+							<td>{{sp.results.isPoweredUp}}</td>
+							<td ng-if="sp.results.stats.length == 1">
+								<div class="stats-ivs">
+									<div>{{sp.results.stats[0].level}}</div>
+									<div>{{sp.results.stats[0].ATK}}</div>
+									<div>{{sp.results.stats[0].DEF}}</div>
+									<div>{{sp.results.stats[0].HP}}</div>
+								</div>
+							</td>
+							<td ng-if="sp.results.stats.length > 1">{{sp.results.stats.length}} combinations</td>
+							<td style="{{vm.IVColorIndex(sp.results.maxIV)}}" ng-if="sp.results.stats.length == 1">{{(sp.results.maxIV/0.45).toFixed(1)}}%</td>
+							<td style="{{vm.IVColorIndex(sp.results.avgIV)}}" ng-if="sp.results.stats.length > 1">{{(sp.results.minIV/0.45).toFixed(0)}}% - {{(sp.results.maxIV/0.45).toFixed(0)}}%</td>
+							<td class="td--controls">
+								<a ng-click="vm.removePokemon(sp.key)" title="Remove"><img src="assets/img/remove.png" alt="Remove" ></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="btn btn-info btn-md pull-right" ng-click="vm.exportData()">Export Data</button>
+			</div>
 		</div>
 </div>
