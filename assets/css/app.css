@@ -209,3 +209,45 @@ th, td {
 .form-control-static {
   font-weight: normal;
 }
+
+table.table-fixed-header { width: 100%; }
+
+table.table-fixed-header,
+table.table-fixed-header > thead,
+table.table-fixed-header > thead > tr,
+table.table-fixed-header > thead > tr > th,
+table.table-fixed-header > tbody,
+table.table-fixed-header > tbody > tr,
+table.table-fixed-header > tbody > td { display: block; }
+
+table.table-fixed-header > thead > tr:after,
+table.table-fixed-header > tbody > tr:after {
+	content:' ';
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+table.table-fixed-header > tbody {
+	overflow-y: scroll;
+	max-height: 500px;
+}
+
+table.table-fixed-header > thead::-webkit-scrollbar { background-color: inherit; }
+
+table.table-fixed-header > thead > tr > th:after,
+table.table-fixed-header > tbody > tr > td:after {
+	content:' ';
+	display: table-cell;
+	visibility: hidden;
+	clear: both;
+}
+table.table-fixed-header > thead tr th,
+table.table-fixed-header > tbody tr td {
+	float: left;
+	word-wrap:break-word;
+}
+
+table.table-fixed-header > tbody {
+	border-bottom: 1px solid #ccc;
+}

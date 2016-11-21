@@ -151,7 +151,8 @@
                 <label>Max IV <p class="form-control-static">{{vm.calcData.results.maxIV}}/45 ({{(vm.calcData.results.maxIV/0.45).toFixed(1)}}%)</p></label>
             </div>
         </div>
-        <table class="table table-hover">
+        <table class="table table-hover table-fixed-header">
+					<thead>
             <tr>
                 <th>
                     <a ng-click="vm.setOrderByParams('level')">Level</a>
@@ -181,6 +182,8 @@
                     <span class="orderby glyphicon glyphicon-triangle-top" aria-hidden="true" ng-show="vm.orderParams == 'total' && !vm.reverseResults"></span>
                 </th>
             </tr>
+					</thead>
+					<tbody>
             <tr class="text-center" ng-repeat="r in vm.calcData.results.stats | orderBy:vm.orderParams:vm.reverseResults">
                 <td>{{r.level}}</td>
                 <td>{{r.HP}}</td>
@@ -188,6 +191,7 @@
                 <td>{{r.DEF}}</td>
                 <td>{{r.total}}/45 ({{(r.total/0.45).toFixed(1)}}%)</td>
             </tr>
+					</tbody>
         </table>
         <button class="btn btn-success btn-lg pull-right" ng-click="vm.exportData()">Export Data</button>
     </div>
