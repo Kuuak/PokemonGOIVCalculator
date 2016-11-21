@@ -251,3 +251,49 @@ table.table-fixed-header > tbody tr td {
 table.table-fixed-header > tbody {
 	border-bottom: 1px solid #ccc;
 }
+
+.results { margin-bottom: 70px; }
+
+.results-count {
+	width: 250px;
+	color: #d32026;
+	padding-bottom: 8px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 2px solid;
+}
+
+.results table { margin-bottom: 10px; }
+
+
+.saved-pokemons th,
+.saved-pokemons td { width: 10%; }
+
+.saved-pokemons .th--stats { width: 15%; }
+.saved-pokemons .stats,
+.saved-pokemons .stats-wrap {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: end;
+}
+.saved-pokemons .stats--lvl { flex: 0 0 25%; }
+.saved-pokemons .stats--ivs { flex: 0 0 75%; }
+
+.saved-pokemons .stats--atk,
+.saved-pokemons .stats--def,
+.saved-pokemons .stats--sta {
+	flex: 0 0 33%;
+	text-align: center;
+}
+
+
+.saved-pokemons .stats-ivs {
+	display: flex;
+}
+
+.saved-pokemons .stats-ivs div { flex-basis: 25%; }
+.saved-pokemons .stats-ivs div:not(:first-child) { border-left: 1px solid lightgrey; }

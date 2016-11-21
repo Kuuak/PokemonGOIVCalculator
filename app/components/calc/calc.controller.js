@@ -42,12 +42,16 @@
     vm.refineIV = refineIV;
     vm.setOrderByParams = setOrderByParams;
     vm.exportData = exportData;
+    vm.saveResult = saveResult;
+    vm.IVColorIndex = IVColorIndex;
+    vm.removePokemon = removePokemon;
 
     activate();
 
     function activate() {
       gameData.fetchData();
       gameData.fetchLanguage();
+      gameStorage.fetchPokemons();
     }
 
     function switchLanguage(language) {
@@ -126,6 +130,7 @@
     function selectPokemon(pokemon) {
       vm.pokemon = gameData.pokemonData[pokemon.number];
       vm.pokemonName = pokemon.name;
+			vm.pokemonIndex = pokemon.number;
       vm.pokemonInputChanged = false;
       vm.mouseOverDropdown = false;
       vm.backgroundImg = (pokemon.number < 9) ? '00' + (pokemon.number + 1) : ((pokemon.number < 99) ? '0' + (pokemon.number + 1) : (pokemon.number + 1));
@@ -150,6 +155,7 @@
       } else {
         vm.selectedTeam = gameData.teams[team];
       }
+			vm.selectedTeamName = team;
     };
 
     function teamKeyboard(team, event) {
@@ -254,5 +260,88 @@
         }
     };
 
+		function IVColorIndex( avgIV ) {
+
+			avgIV = ( avgIV / 0.45 ).toFixed(0);
+
+			var style = 'background-color:';
+
+			if ( avgIV < 50 ) {
+				style += 'rgba(242, 222, 222,'+ ((100-(avgIV*2)) / 100) +');';
+			}
+			else if ( avgIV == 50 ) {
+				style = '';
+			}
+			else if (avgIV > 50 ) {
+				style += 'rgba(223, 240, 216,'+ (avgIV/100) +');';
+			}
+
+			return style;
+		}
+
+		function saveResult() {
+
+			var data = {};
+			data.pokemon = vm.pokemonIndex;
+			data.cp = vm.cp;
+			data.hp = vm.hp;
+			data.stardust = parseInt(vm.stardust);
+
+			if ( vm.selectedTeam ) {
+				data.team = vm.selectedTeamName;
+				if ( vm.overall ) {
+					data.overall = vm.overall;
+				}
+				if ( vm.stats ) {
+					data.stats = vm.stats;
+				}
+
+				data.highHP		= vm.highHP;
+				data.highATK	= vm.highATK;
+				data.highDEF	= vm.highDEF;
+			}
+
+			data.results = vm.calcData.results;
+
+			// Generate a unique key
+			data.key = md5( JSON.stringify(data) + Date.now() );
+
+			console.log(data);
+
+			// Duplicate saved list then add new pokemon
+			var list = gameStorage.pokemons.slice();
+			list.push(data);
+
+			vm.gameStorage.savePokemons( orderSavedPokemon(list) );
+			$route.reload();
+		}
+
+		function orderSavedPokemon( list ) {
+			return list.sort(function(a, b) {
+				if ( a.pokemon == b.pokemon ) {
+					if ( a.cp == b.cp ) {
+						if ( a.hp == b.hp ) {
+							if ( a.stardust == a.stardust ) {
+								return ( a.results.avgIV < b.results.avgIV )
+							}
+							return a.stardust < b.stardust;
+						}
+						return a.hp < b.hp;
+					}
+					return a.cp < b.cp;
+				}
+				return a.pokemon > b.pokemon;
+			});
+		}
+
+		function removePokemon( key ) {
+
+			var result = vm.gameStorage.pokemons.filter( function(pokemon) {
+				return pokemon.key != key;
+			} );
+
+			vm.gameStorage.savePokemons(result);
+			$route.reload();
+		}
   }
 })();
