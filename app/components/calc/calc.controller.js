@@ -230,23 +230,9 @@
     }
 
     function exportData() {
-        var data = {};
-        data.pokemon = vm.pokemonName;
-        data.cp = vm.cp;
-        data.hp = vm.hp;
-        data.stardust = vm.stardust;
-        if (vm.selectedTeam) {
-            data.team = vm.selectedTeam.name;
-            if (vm.overall) {
-                data.overall = vm.overall;
-            }
-            if (vm.stats) {
-                data.stats = vm.stats;
-            }
-        }
-        data.results = vm.calcData.results;
-        var json = JSON.stringify(data);
-        var file = new File([json], vm.pokemonName + ".json", {
+
+        var json = JSON.stringify(vm.gameStorage.pokemons);
+        var file = new File([json], "PoGoBin-IV-Calculator.json", {
             type: "application/json"
         });
         saveAs(file);
