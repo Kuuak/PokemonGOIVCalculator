@@ -292,8 +292,6 @@
 			// Generate a unique key
 			data.key = md5( JSON.stringify(data) + Date.now() );
 
-			console.log(data);
-
 			// Duplicate saved list then add new pokemon
 			var list = gameStorage.pokemons.slice();
 			list.push(data);

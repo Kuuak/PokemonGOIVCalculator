@@ -122,7 +122,6 @@
     }
 
     function refine(pokemonName, pokemon, refine) {
-      console.log(pokemonName, pokemon);
       var stats = service.results.stats;
       service.results = {
         name: pokemonName,
@@ -153,8 +152,8 @@
             service.results.stats.push(result);
           }
 
-          console.log('HP', Math.floor(ECpM * (pokemon.BHP + 15)), 'CP', Math.floor((pokemon.BATK + 15) * Math.pow(pokemon.BDEF + 15, 0.5) *
-                                                                         Math.pow(pokemon.BHP + 15, 0.5) * Math.pow(ECpM, 2) / 10));
+          // console.log('HP', Math.floor(ECpM * (pokemon.BHP + 15)), 'CP', Math.floor((pokemon.BATK + 15) * Math.pow(pokemon.BDEF + 15, 0.5) *
+          //                                                                Math.pow(pokemon.BHP + 15, 0.5) * Math.pow(ECpM, 2) / 10));
         }
       }
     }
