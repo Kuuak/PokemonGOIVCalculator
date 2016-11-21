@@ -241,6 +241,9 @@
 						<td ng-if="sp.results.stats.length > 1">{{sp.results.stats.length}} combinations</td>
 						<td style="{{vm.IVColorIndex(sp.results.maxIV)}}" ng-if="sp.results.stats.length == 1">{{(sp.results.maxIV/0.45).toFixed(1)}}%</td>
 						<td style="{{vm.IVColorIndex(sp.results.avgIV)}}" ng-if="sp.results.stats.length > 1">{{(sp.results.minIV/0.45).toFixed(0)}}% - {{(sp.results.maxIV/0.45).toFixed(0)}}%</td>
+						<td class="td--controls">
+							<a ng-click="vm.removePokemon(sp.key)" title="Remove"><img src="assets/img/remove.png" alt="Remove" ></a>
+						</td>
 					</tr>
 				</tbody>
 			</table>

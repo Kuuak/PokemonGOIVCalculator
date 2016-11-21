@@ -297,3 +297,19 @@ table.table-fixed-header > tbody {
 
 .saved-pokemons .stats-ivs div { flex-basis: 25%; }
 .saved-pokemons .stats-ivs div:not(:first-child) { border-left: 1px solid lightgrey; }
+
+.saved-pokemons .th--controls,
+.saved-pokemons .td--controls { width: 5%; }
+
+.saved-pokemons .td--controls a {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+}
+
+.saved-pokemons .td--controls img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
