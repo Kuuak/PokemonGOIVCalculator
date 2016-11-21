@@ -38,6 +38,7 @@ body {
 .navbar .navbar-text, .navbar .navbar-link {
   color: whitesmoke;
 }
+.navbar .navbar-link { text-decoration: underline; }
 
 .row label {
   margin: 0px 0px 10px;
