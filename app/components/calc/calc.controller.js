@@ -3,9 +3,9 @@
 
   angular.module('pogoApp').controller('CalcController', CalcController);
 
-  CalcController.$inject = ['$http', '$interpolate', '$route', 'gameData', 'calcData'];
+  CalcController.$inject = ['$http', '$interpolate', '$route', 'gameData', 'calcData', 'gameStorage'];
 
-  function CalcController($http, $interpolate, $route, gameData, calcData) {
+  function CalcController($http, $interpolate, $route, gameData, calcData, gameStorage) {
     var vm = this;
 
     vm.collapseInstructions = true;
@@ -20,6 +20,7 @@
     vm.filteredList = [];
 
     vm.gameData = gameData;
+		vm.gameStorage = gameStorage;
     vm.calcData = calcData;
     vm.switchLanguage = switchLanguage;
     vm.filterList = filterList;
