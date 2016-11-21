@@ -297,6 +297,8 @@
 			list.push(data);
 
 			vm.gameStorage.savePokemons( orderSavedPokemon(list) );
+
+			vm.calcData.results.stats = null;
 			$route.reload();
 		}
 
