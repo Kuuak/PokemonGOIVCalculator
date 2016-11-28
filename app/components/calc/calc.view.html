@@ -200,6 +200,7 @@
 			<label>
 				<a ng-click="savedPokemons = !savedPokemons">
 					Saved Pok&eacute;mons
+					<span ng-show="vm.gameStorage.pokemons.length > 0" class="pokemon-saved-count">({{vm.gameStorage.pokemons.length}})</span>
 					<span class="glyphicon glyphicon-menu-down" aria-hidden="true" ng-show="savedPokemons"></span>
 					<span class="glyphicon glyphicon-menu-up" aria-hidden="true" ng-show="!savedPokemons"></span>
 				</a>
