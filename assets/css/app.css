@@ -275,6 +275,8 @@ table.table-fixed-header > tbody {
 .saved-pokemons th,
 .saved-pokemons td { width: 10%; }
 
+.saved-pokemons tbody >tr:hover { background-color: #eee; }
+
 .saved-pokemons .th--stats { width: 15%; }
 .saved-pokemons .stats,
 .saved-pokemons .stats-wrap {
